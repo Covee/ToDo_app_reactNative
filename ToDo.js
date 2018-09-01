@@ -26,17 +26,18 @@ export default class ToDo extends Component{
 								]}
 					>hello little fucker</Text>
 				</View>
-				{isEditing ? (
+
+				{isEditing ? 
 						<View style={styles.action}>
-							<TouchableOpacity>
+							<TouchableOpacity onPressOut={this._finishEditing}>
 								<View style={styles.actionContainer}>
 									<Text style={styles.actionText}>✅</Text>
 								</View>
 							</TouchableOpacity>
 						</View>
-					): (
+					: 
 						<View style={styles.action}>
-						<TouchableOpacity>
+						<TouchableOpacity onPressOut={this._startEditing}>
 							<View style={styles.actionContainer}>
 								<Text style={styles.actionText}>✏️</Text>
 							</View>
@@ -47,7 +48,7 @@ export default class ToDo extends Component{
 							</View>
 						</TouchableOpacity>
 					</View>
-				)}
+				}
 			</View>
 		);
 	}
@@ -55,9 +56,19 @@ export default class ToDo extends Component{
 		this.setState(prevState => {
 			return {
 				isCompleted: !prevState.isCompleted
-			}
-		})
+			};
+		});
 	}
+	_startEditing = () => {
+		this.setState({
+			isEditing: true,
+		});
+	}
+	_finishEditing = () => {
+		this.setState({
+			isEditing: false,
+		});
+	};
 }
 
 const styles = StyleSheet.create({
