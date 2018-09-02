@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from "react-native"
+import { View, Text, TouchableOpacity, StyleSheet, Dimensions, TextInput } from "react-native"
 
 const { width, height } = Dimensions.get("window");
 
@@ -7,9 +7,11 @@ export default class ToDo extends Component{
 	state = {
 		isEditing: false,
 		isCompleted: false,
+		toDoValue: "",
 	};
 	render(){
-		const { isCompleted, isEditing } = this.state;
+		const { isCompleted, isEditing, toDoValue } = this.state;
+		const { text } = this.props;
 		return(
 			<View style={styles.container}>
 				<View style={styles.column}>
@@ -20,11 +22,23 @@ export default class ToDo extends Component{
 								]}
 						/>
 					</TouchableOpacity>
-					<Text style={[
-								styles.text,
-								isCompleted ? styles.completedText : styles.uncompletedText,
-								]}
-					>hello little fucker</Text>
+					{isEditing ? <TextInput style={[styles.text,
+													styles.input,
+													isCompleted ? styles.completedText : styles.uncompletedText,
+													]}
+											value={toDoValue}
+											multiline={true}
+											onChangeText={this._controlInput}
+											returnKeyType={"done"}
+											onBlur={this._finishEditing} // 인풋 창 범위밖을 클릭하면 편집이 끝난것으로 간주함
+								/> :
+								<Text style={[
+									styles.text,
+									isCompleted ? styles.completedText : styles.uncompletedText,
+									]}
+								>
+						{ text }
+					</Text>}
 				</View>
 
 				{isEditing ? 
@@ -60,8 +74,10 @@ export default class ToDo extends Component{
 		});
 	}
 	_startEditing = () => {
+		const { text } = this.props;
 		this.setState({
 			isEditing: true,
+			toDoValue: text,
 		});
 	}
 	_finishEditing = () => {
@@ -69,6 +85,11 @@ export default class ToDo extends Component{
 			isEditing: false,
 		});
 	};
+	_controlInput = (text) => {
+		this.setState({
+			toDoValue: text,
+		})
+	}
 }
 
 const styles = StyleSheet.create({
@@ -119,5 +140,10 @@ const styles = StyleSheet.create({
 	actionContainer: {
 		marginVertical: 10,
 		marginHorizontal: 10,
+	},
+	input: {
+		marginVertical: 5,
+		width : width / 2,
+
 	},
 });
