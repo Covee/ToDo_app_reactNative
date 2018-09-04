@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
 		marginHorizontal: 10,
 	},
 	input: {
-		marginVertical: 5,
+		marginVertical: 20,
 		width : width / 2,
 
 	},
