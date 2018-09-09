@@ -27,13 +27,13 @@ export default class App extends React.Component {
   };
   render() {
     const { newToDo, loadedToDos, toDos } = this.state;
-    if (!loadedToDos) {
+    if (loadedToDos) {
       return <AppLoading />;
     }
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
-        <Text style={styles.title}>Kawai To Do</Text>
+        <Text style={styles.title}>To Do</Text>
         <View style={styles.card}>
           <TextInput
             style={styles.input}
