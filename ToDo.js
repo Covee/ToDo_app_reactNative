@@ -40,6 +40,7 @@ export default class ToDo extends Component{
 											onChangeText={this._controlInput}
 											returnKeyType={"done"}
 											onBlur={this._finishEditing} // 인풋 창 범위밖을 클릭하면 편집이 끝난것으로 간주함
+											underlineColorAndroid={"transparent"}
 								/> :
 								<Text style={[
 									styles.text,

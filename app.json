@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "basic-todo-app",
+    "name": "ToDo",
     "description": "This project is really great.",
     "slug": "basic-todo-app",
     "privacy": "public",
@@ -11,7 +11,7 @@
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
+      "resizeMode": "cover",
       "backgroundColor": "#F23657"
     },
     "updates": {
@@ -21,7 +21,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "co.cobee.todo"
+    },
+    "android": {
+      "package": "com.todo.todo"
     }
   }
 }
